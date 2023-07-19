@@ -4,7 +4,7 @@
 </script>
 
 <PrimaryButton buttonLabel="Submit" />
-<SecondaryButton>Cancel</SecondaryButton>
+<SecondaryButton size="large">Cancel</SecondaryButton>
 
 <style lang="scss">
 </style>
