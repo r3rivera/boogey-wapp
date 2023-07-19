@@ -3,10 +3,17 @@
 ## Project Generation
 
 This project was generated using the following
-```npm create vite@latest boogey-app -- --template svelte```
+`npm create vite@latest boogey-app -- --template svelte`
 
 Latest in the docs in their site
-```npm create svelte@latest boogey-app```
+`npm create svelte@latest boogey-app`
+
+## Building the project
+
+`npm build` or `vite build`
+
+Option to not minify the build is to use
+`vite build "--minify=false"`
 
 This template should help get you started developing with Svelte in Vite.
 
@@ -22,8 +29,8 @@ Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also pow
 
 **Why use this over SvelteKit?**
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+-   It brings its own routing solution which might not be preferable for some users.
+-   It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
 
 This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
 
@@ -50,6 +57,6 @@ If you have state that's important to retain within a component, consider creati
 ```js
 // store.js
 // An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+import { writable } from 'svelte/store';
+export default writable(0);
 ```
