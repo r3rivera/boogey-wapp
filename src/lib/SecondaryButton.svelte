@@ -1,10 +1,12 @@
 <script>
 	export let size = 'small';
-	export let shadow = undefined;
 </script>
 
-<button class:size-lg={size === 'large'} class:size-sm={size === 'small'}
-	><slot>SecondaryButton</slot></button
+<button class:size-lg={size === 'large'} class:size-sm={size === 'small'}>
+	{#if $$slots.prefixName}
+		<div class="prefix-icon" style="width:20px;"><slot name="prefixName" /></div>
+	{/if}
+	<slot>SecondaryButton</slot></button
 >
 
 <style lang="scss">
@@ -12,12 +14,18 @@
 	//@use '../styles/variables.scss';
 
 	button {
+		display: flex;
+		align-items: center;
 		border: none;
 		background-color: #ff3e00;
 		color: #fff;
 
 		border-radius: 3px;
 		cursor: pointer;
+
+		.prefix-icon {
+			margin-right: 6px;
+		}
 
 		&:hover {
 			background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
