@@ -4,7 +4,7 @@
 
 <button>{buttonLabel}</button>
 
-<style>
+<style lang="scss">
 	button {
 		padding: 10px 15px;
 	}

@@ -6,5 +6,5 @@
 <PrimaryButton buttonLabel="Submit" />
 <SecondaryButton>Cancel</SecondaryButton>
 
-<style>
+<style lang="scss">
 </style>
