@@ -1,13 +1,22 @@
 <script>
 	export let size = 'small';
+	let isMouseHovered;
 </script>
 
 <button class:size-lg={size === 'large'} class:size-sm={size === 'small'}>
 	{#if $$slots.prefixName}
-		<div class="prefix-icon" style="width:20px;"><slot name="prefixName" /></div>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<div
+			class="prefix-icon"
+			style="width:20px;"
+			on:mouseenter={() => (isMouseHovered = true)}
+			on:mouseleave={() => (isMouseHovered = false)}
+		>
+			<slot name="prefixName" />
+		</div>
 	{/if}
-	<slot>SecondaryButton</slot></button
->
+	<div style="width:20px;"><slot {isMouseHovered}>SecondaryButton</slot></div>
+</button>
 
 <style lang="scss">
 	//Only needed if we don't have prependData in the svelte.config.js
