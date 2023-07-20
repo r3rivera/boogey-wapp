@@ -14,14 +14,13 @@
 	];
 </script>
 
-{#each bucketList as bucket (bucket.id)}
-	<Cards>
-		<div slot="cardHeader">{bucket.title}</div>
-		<div slot="cardContent">{bucket.desc}</div>
-		<div>{bucket.completed}</div>
+{#each bucketList as { id, title, desc, completed } (id)}
+	<Cards isCloseable={true}>
+		<div slot="cardHeader">{title}</div>
+		<div slot="cardContent">{desc}</div>
+		<div>{completed}</div>
 	</Cards>
 {/each}
-<Cards />
 
 <style lang="scss">
 </style>
