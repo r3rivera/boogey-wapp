@@ -1,6 +1,10 @@
 <script>
 	import FaTimes from 'svelte-icons/fa/FaTimes.svelte';
+	import { createEventDispatcher } from 'svelte';
 
+	const dispatchEvent = createEventDispatcher();
+
+	export let itemId;
 	export let isCloseable = false;
 </script>
 
@@ -13,7 +17,13 @@
 				<div class="card-container--header">&nbsp;</div>
 			{/if}
 			{#if isCloseable}
-				<div class="card-container--header__box-close"><FaTimes /></div>
+				<div class="card-container--header__box-close">
+					<button
+						on:click={() => {
+							dispatchEvent('onDeleteItemEvent', itemId);
+						}}><FaTimes /></button
+					>
+				</div>
 			{/if}
 		</div>
 	{/if}

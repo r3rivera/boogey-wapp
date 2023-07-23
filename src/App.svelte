@@ -1,6 +1,7 @@
 <script>
 	import { v4 as uuid } from 'uuid';
 	import TodoTemp from './lib/TodoTemp.svelte';
+	import Cards from './lib/Cards.svelte';
 
 	let bucketList = [
 		{ id: uuid(), title: 'House', desc: 'US House', completed: false },
@@ -14,16 +15,35 @@
 	];
 
 	let itemLabel = 'items';
-	$: console.log(bucketList);
-
-	setTimeout(() => {
-		itemLabel = 'in Items';
-		console.log('Done timeout');
-	}, 3000);
 </script>
 
 <h3>{bucketList.length} {itemLabel}</h3>
-<TodoTemp bind:todoList={bucketList} />
+<TodoTemp
+	todoList={bucketList}
+	on:AddItem={(e) => {
+		bucketList = [
+			...bucketList,
+			{
+				id: uuid(),
+				title: e.detail['title'],
+				desc: 'US House',
+				completed: false
+			}
+		];
+	}}
+/>
+
+<!-- {#each bucketList as item}
+	<Cards
+		itemId={item.id}
+		isCloseable={true}
+		on:onDeleteItemEvent={(e) => {
+			console.log(e.detail);
+		}}
+	>
+		<div slot="cardHeader">{item.title}</div>
+	</Cards>
+{/each} -->
 
 <style lang="scss">
 </style>

@@ -1,22 +1,17 @@
 <script>
-	import { v4 as uuid } from 'uuid';
+	import { createEventDispatcher } from 'svelte';
 
-	export let todoList;
-
+	const dispatchEvent = createEventDispatcher();
 	let inputField;
+
 	function handlerAddSubmit() {
 		if (!inputField) return;
-
-		todoList = [
-			...todoList,
-			{
-				id: uuid(),
-				title: inputField,
-				desc: 'Something Added',
-				completed: false
-			}
-		];
+		dispatchEvent('AddItem', {
+			title: inputField
+		});
 	}
+
+	export let todoList;
 </script>
 
 <form on:submit|preventDefault={handlerAddSubmit}>
