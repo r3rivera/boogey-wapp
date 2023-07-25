@@ -11,6 +11,19 @@
 		});
 	}
 
+	function handleRemoveItem(itemId) {
+		dispatchEvent('RemoveItem', {
+			id: itemId
+		});
+	}
+
+	function handleToggle(itemId, isChecked) {
+		dispatchEvent('ToggleItem', {
+			itemId,
+			isChecked
+		});
+	}
+
 	export let todoList;
 </script>
 
@@ -22,7 +35,27 @@
 {#if !todoList}
 	<div>Empty</div>
 {:else}
-	{#each todoList as todoItem}
-		<ul>{todoItem.title}</ul>
-	{/each}
+	<ul>
+		{#each todoList as todoItem}
+			<li>
+				<label>
+					<input
+						on:input={(e) => {
+							e.currentTarget.checked = todoItem.completed;
+							handleToggle(todoItem.id, !todoItem.completed);
+						}}
+						type="checkbox"
+						checked={todoItem.completed}
+					/>
+
+					{todoItem.title}
+				</label>
+				<button
+					on:click={() => {
+						handleRemoveItem(todoItem.id);
+					}}>Remove</button
+				>
+			</li>
+		{/each}
+	</ul>
 {/if}

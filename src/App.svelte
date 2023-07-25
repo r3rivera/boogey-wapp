@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script>
 	import { v4 as uuid } from 'uuid';
 	import TodoTemp from './lib/TodoTemp.svelte';
@@ -30,6 +32,20 @@
 				completed: false
 			}
 		];
+	}}
+	on:RemoveItem={(e) => {
+		bucketList = bucketList.filter((item) => e.detail['id'] !== item.id);
+	}}
+	on:ToggleItem={(e) => {
+		bucketList = bucketList.map((t) => {
+			if (t.id === e.detail.itemId) {
+				return {
+					...t,
+					completed: e.detail.isChecked
+				};
+			}
+			return { ...t };
+		});
 	}}
 />
 
