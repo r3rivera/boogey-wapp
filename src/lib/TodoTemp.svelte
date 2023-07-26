@@ -1,5 +1,13 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount, onDestroy } from 'svelte';
+	onMount(() => {
+		//This should be at the top most
+		console.log('OnMount Called!');
+	});
+
+	onDestroy(() => {
+		console.log('OnDestroy Called!');
+	});
 
 	const dispatchEvent = createEventDispatcher();
 	let inputField;
@@ -37,6 +45,7 @@
 {:else}
 	<ul>
 		{#each todoList as todoItem}
+			<!-- {@debug todoItem} -->
 			<li>
 				<label>
 					<input
