@@ -3,8 +3,7 @@
 <script>
 	import { v4 as uuid } from 'uuid';
 	import TodoTemp from './lib/TodoTemp.svelte';
-	import Cards from './lib/Cards.svelte';
-	import Diagram from './lib/Diagram.svelte';
+	import Login from './lib/Login.svelte';
 
 	let bucketList = [
 		{ id: uuid(), title: 'House', desc: 'US House', completed: false },
@@ -18,11 +17,21 @@
 	];
 
 	let itemLabel = 'items';
+
+	function handleAuthentication(credential) {
+		alert('Basic Auth :: ' + credential);
+	}
 </script>
 
-<Diagram />
+<Login
+	on:DispatchAuth={(e) => {
+		handleAuthentication(e.detail['credentials']);
+	}}
+/>
 
+<!-- 
 <h3>{bucketList.length} {itemLabel}</h3>
+
 <TodoTemp
 	todoList={bucketList}
 	on:AddItem={(e) => {
@@ -52,7 +61,7 @@
 	}}
 />
 
-<!-- {#each bucketList as item}
+{#each bucketList as item}
 	<Cards
 		itemId={item.id}
 		isCloseable={true}
@@ -63,6 +72,3 @@
 		<div slot="cardHeader">{item.title}</div>
 	</Cards>
 {/each} -->
-
-<style lang="scss">
-</style>
