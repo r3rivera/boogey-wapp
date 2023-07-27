@@ -4,6 +4,7 @@
 	import { v4 as uuid } from 'uuid';
 	import TodoTemp from './lib/TodoTemp.svelte';
 	import Cards from './lib/Cards.svelte';
+	import Diagram from './lib/Diagram.svelte';
 
 	let bucketList = [
 		{ id: uuid(), title: 'House', desc: 'US House', completed: false },
@@ -18,6 +19,8 @@
 
 	let itemLabel = 'items';
 </script>
+
+<Diagram />
 
 <h3>{bucketList.length} {itemLabel}</h3>
 <TodoTemp
