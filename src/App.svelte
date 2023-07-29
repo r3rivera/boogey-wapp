@@ -18,10 +18,38 @@
 
 	let itemLabel = 'items';
 
-	function handleAuthentication(credential) {
-		alert('Basic Auth :: ' + credential);
+	async function handleAuthentication(credential) {
+		const headers = new Headers();
+		headers.append('Authorization', 'Basic ' + credential);
+		//headers.append('Access-Control-Request-Headers', 'Authorization');
+		await fetch('http://localhost:8080/web/login2', {
+			method: 'POST',
+			headers: headers,
+			redirect: 'follow'
+		})
+			.then(async (response) => {
+				if (response.ok) {
+					console.log('Success');
+					const data = await response.json();
+					console.log(data);
+				} else {
+					console.error('Error with authentication');
+				}
+			})
+			.catch((err) => {
+				console.error(JSON.stringify(err));
+			});
 	}
 </script>
+
+<!-- 
+{#await loadPromise}
+	<p>Loading</p>
+{:then response}
+	<p>Good</p>
+{:catch}
+	<p>Error</p>
+{/await} -->
 
 <Login
 	on:DispatchAuth={(e) => {
